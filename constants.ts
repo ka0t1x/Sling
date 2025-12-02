@@ -1,0 +1,60 @@
+import { VideoData } from './types';
+
+// Using reliable public domain stock footage for demo purposes
+export const MOCK_VIDEOS: VideoData[] = [
+  {
+    id: '1',
+    url: 'https://videos.pexels.com/video-files/5896379/5896379-hd_1080_1920_24fps.mp4',
+    username: '@nature_lover',
+    description: 'The waves are mesmerizing today 🌊 #ocean #vibes',
+    song: 'Original Sound - Nature Sounds',
+    likes: 12400,
+    comments: 342,
+    shares: 1200,
+    avatar: 'https://picsum.photos/100/100?random=1',
+  },
+  {
+    id: '2',
+    url: 'https://videos.pexels.com/video-files/4058098/4058098-hd_1080_1920_30fps.mp4',
+    username: '@urban_explorer',
+    description: 'City lights at night never get old 🌃 #citylife',
+    song: 'Midnight City - M83 (Remix)',
+    likes: 8500,
+    comments: 120,
+    shares: 540,
+    avatar: 'https://picsum.photos/100/100?random=2',
+  },
+  {
+    id: '3',
+    url: 'https://videos.pexels.com/video-files/6981416/6981416-hd_1080_1920_25fps.mp4',
+    username: '@skater_boi',
+    description: 'Trying out some new tricks at the park 🛹',
+    song: 'Sk8er Boi - Avril Lavigne',
+    likes: 45000,
+    comments: 2300,
+    shares: 8900,
+    avatar: 'https://picsum.photos/100/100?random=3',
+  },
+  {
+    id: '4',
+    url: 'https://videos.pexels.com/video-files/4434242/4434242-hd_1080_1920_30fps.mp4',
+    username: '@coffee_addict',
+    description: 'Morning pour over routine ☕️ #coffee',
+    song: 'Morning Jazz - Relax',
+    likes: 5600,
+    comments: 89,
+    shares: 200,
+    avatar: 'https://picsum.photos/100/100?random=4',
+  },
+  {
+    id: '5',
+    url: 'https://videos.pexels.com/video-files/6853337/6853337-hd_1080_1920_25fps.mp4',
+    username: '@fitness_junkie',
+    description: 'No days off! Let’s get it 💪 #gymtok',
+    song: 'Eye of the Tiger - Survivor',
+    likes: 22100,
+    comments: 560,
+    shares: 1100,
+    avatar: 'https://picsum.photos/100/100?random=5',
+  }
+];
