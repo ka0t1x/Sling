@@ -1,6 +1,6 @@
-import React, { useRef, useEffect, useState, useCallback } from 'react';
+import React, { useRef, useEffect, useState } from 'react';
 import { VideoData } from '../types';
-import { Heart, MessageCircle, Share2, Music, Sparkles, Volume2, VolumeX, Play } from 'lucide-react';
+import { Heart, MessageCircle, Share2, Music, Sparkles, Volume2, VolumeX, Play, AlertCircle } from 'lucide-react';
 import { generateViralCaption } from '../services/geminiService';
 
 interface VideoPlayerProps {
@@ -17,16 +17,20 @@ const VideoPlayer: React.FC<VideoPlayerProps> = ({ data, isActive, toggleMute, i
   const [aiModalOpen, setAiModalOpen] = useState(false);
   const [aiContent, setAiContent] = useState<{ caption?: string; hashtags?: string[]; analysis?: string } | null>(null);
   const [loadingAi, setLoadingAi] = useState(false);
+  const [hasError, setHasError] = useState(false);
 
   // Handle Play/Pause based on active state (scrolling)
   useEffect(() => {
-    if (isActive) {
+    if (isActive && !hasError) {
       const playPromise = videoRef.current?.play();
       if (playPromise !== undefined) {
         playPromise
           .then(() => setIsPlaying(true))
           .catch((error) => {
-            console.log('Autoplay prevented:', error);
+            // Only log if it's not an AbortError (common when scrolling quickly)
+            if (error.name !== 'AbortError') {
+              console.log('Autoplay prevented:', error);
+            }
             setIsPlaying(false);
           });
       }
@@ -37,9 +41,11 @@ const VideoPlayer: React.FC<VideoPlayerProps> = ({ data, isActive, toggleMute, i
       }
       setIsPlaying(false);
     }
-  }, [isActive]);
+  }, [isActive, hasError]);
 
   const handleVideoClick = () => {
+    if (hasError) return;
+    
     if (isPlaying) {
       videoRef.current?.pause();
       setIsPlaying(false);
@@ -47,6 +53,12 @@ const VideoPlayer: React.FC<VideoPlayerProps> = ({ data, isActive, toggleMute, i
       videoRef.current?.play();
       setIsPlaying(true);
     }
+  };
+
+  const handleError = () => {
+    console.error(`Error loading video: ${data.url}`);
+    setHasError(true);
+    setIsPlaying(false);
   };
 
   const handleLike = (e: React.MouseEvent) => {
@@ -68,19 +80,28 @@ const VideoPlayer: React.FC<VideoPlayerProps> = ({ data, isActive, toggleMute, i
   return (
     <div className="relative h-full w-full snap-start shrink-0 bg-black">
       {/* Video Element */}
-      {/* eslint-disable-next-line jsx-a11y/media-has-caption */}
-      <video
-        ref={videoRef}
-        src={data.url}
-        className="h-full w-full object-cover cursor-pointer"
-        loop
-        playsInline
-        muted={isMuted}
-        onClick={handleVideoClick}
-      />
+      {hasError ? (
+        <div className="h-full w-full flex flex-col items-center justify-center bg-gray-900 text-gray-500">
+          <AlertCircle size={48} className="mb-2 opacity-50" />
+          <p className="text-sm">Video failed to load</p>
+        </div>
+      ) : (
+        // eslint-disable-next-line jsx-a11y/media-has-caption
+        <video
+          ref={videoRef}
+          src={data.url}
+          className="h-full w-full object-cover cursor-pointer"
+          loop
+          playsInline
+          muted={isMuted}
+          onClick={handleVideoClick}
+          onError={handleError}
+          crossOrigin="anonymous"
+        />
+      )}
 
       {/* Play Icon Overlay (when paused) */}
-      {!isPlaying && (
+      {!isPlaying && !hasError && (
         <div 
           className="absolute inset-0 flex items-center justify-center pointer-events-none"
           onClick={handleVideoClick}

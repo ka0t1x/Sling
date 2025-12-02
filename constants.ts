@@ -1,10 +1,10 @@
 import { VideoData } from './types';
 
-// Using reliable public domain stock footage for demo purposes
+// Using Google's sample videos which are highly reliable and persistent
 export const MOCK_VIDEOS: VideoData[] = [
   {
     id: '1',
-    url: 'https://videos.pexels.com/video-files/5896379/5896379-hd_1080_1920_24fps.mp4',
+    url: 'https://storage.googleapis.com/gtv-videos-bucket/sample/ForBiggerFun.mp4',
     username: '@nature_lover',
     description: 'The waves are mesmerizing today 🌊 #ocean #vibes',
     song: 'Original Sound - Nature Sounds',
@@ -15,7 +15,7 @@ export const MOCK_VIDEOS: VideoData[] = [
   },
   {
     id: '2',
-    url: 'https://videos.pexels.com/video-files/4058098/4058098-hd_1080_1920_30fps.mp4',
+    url: 'https://storage.googleapis.com/gtv-videos-bucket/sample/ForBiggerBlazes.mp4',
     username: '@urban_explorer',
     description: 'City lights at night never get old 🌃 #citylife',
     song: 'Midnight City - M83 (Remix)',
@@ -26,9 +26,9 @@ export const MOCK_VIDEOS: VideoData[] = [
   },
   {
     id: '3',
-    url: 'https://videos.pexels.com/video-files/6981416/6981416-hd_1080_1920_25fps.mp4',
-    username: '@skater_boi',
-    description: 'Trying out some new tricks at the park 🛹',
+    url: 'https://storage.googleapis.com/gtv-videos-bucket/sample/ForBiggerEscapes.mp4',
+    username: '@skater_girl',
+    description: 'Cruising down the street 🛹 #skate',
     song: 'Sk8er Boi - Avril Lavigne',
     likes: 45000,
     comments: 2300,
@@ -37,9 +37,9 @@ export const MOCK_VIDEOS: VideoData[] = [
   },
   {
     id: '4',
-    url: 'https://videos.pexels.com/video-files/4434242/4434242-hd_1080_1920_30fps.mp4',
+    url: 'https://storage.googleapis.com/gtv-videos-bucket/sample/ForBiggerJoyrides.mp4',
     username: '@coffee_addict',
-    description: 'Morning pour over routine ☕️ #coffee',
+    description: 'Fresh beans for the morning brew ☕️ #coffee',
     song: 'Morning Jazz - Relax',
     likes: 5600,
     comments: 89,
@@ -48,7 +48,7 @@ export const MOCK_VIDEOS: VideoData[] = [
   },
   {
     id: '5',
-    url: 'https://videos.pexels.com/video-files/6853337/6853337-hd_1080_1920_25fps.mp4',
+    url: 'https://storage.googleapis.com/gtv-videos-bucket/sample/ForBiggerMeltdowns.mp4',
     username: '@fitness_junkie',
     description: 'No days off! Let’s get it 💪 #gymtok',
     song: 'Eye of the Tiger - Survivor',
@@ -56,5 +56,41 @@ export const MOCK_VIDEOS: VideoData[] = [
     comments: 560,
     shares: 1100,
     avatar: 'https://picsum.photos/100/100?random=5',
+  }
+];
+
+export const MOCK_ESPORTS_VIDEOS: VideoData[] = [
+  {
+    id: 'e1',
+    url: 'https://storage.googleapis.com/gtv-videos-bucket/sample/ElephantsDream.mp4',
+    username: '@pro_gamer_1',
+    description: 'Insane clutch in the grand finals! 🎮 🏆 #esports',
+    song: 'Victory Theme - Gaming',
+    likes: 50000,
+    comments: 1200,
+    shares: 3400,
+    avatar: 'https://picsum.photos/100/100?random=10',
+  },
+  {
+    id: 'e2',
+    url: 'https://storage.googleapis.com/gtv-videos-bucket/sample/Sintel.mp4',
+    username: '@league_champ',
+    description: 'Highlight reel from today stream 🔴 #live',
+    song: 'Stream Beats',
+    likes: 23000,
+    comments: 800,
+    shares: 1500,
+    avatar: 'https://picsum.photos/100/100?random=11',
+  },
+  {
+    id: 'e3',
+    url: 'https://storage.googleapis.com/gtv-videos-bucket/sample/TearsOfSteel.mp4',
+    username: '@fps_god',
+    description: 'Can’t believe I hit that shot 🎯 #sniper',
+    song: 'Precision - Dubstep',
+    likes: 89000,
+    comments: 4500,
+    shares: 12000,
+    avatar: 'https://picsum.photos/100/100?random=12',
   }
 ];
